@@ -600,56 +600,67 @@
     </header>
 
     <div class="stack">
-      <!-- LIVE ISSUES + STATS -->
-      <section class="card">
-        <div class="card-header-row">
-          <div>
-            <div class="card-title">Live issues &amp; votes (on this device)</div>
+      <!-- LIVE ISSUES + VOTES -->
+<section class="card">
+    <div class="card-header-row">
+        <div>
+            <div class="card-title">Live Issues & Votes</div>
             <div class="card-subtitle">
-              See the questions you’ve created and practice voting them up or down.
+                See the questions you've created and practice voting them up or down.
             </div>
-          </div>
-          <button class="btn-secondary" id="clearAllIssuesBtn" type="button">
+        </div>
+        <button class="btn-secondary" onclick="clearAllIssues()">
             🧹 Clear all issues (local test)
-          </button>
-        </div>
+        </button>
+    </div>
 
-        <div class="layout-two">
-          <!-- ISSUES LIST -->
-          <div>
+    <div class="layout-two">
+
+        <!-- FILTERS -->
+        <div>
             <div class="filter-row">
-              <label for="scopeFilter">Showing issues:</label>
-              <select id="scopeFilter">
-                <option value="All">All – national &amp; local</option>
-                <option value="National">National only</option>
-                <option value="State">State only</option>
-                <option value="Local">Local only</option>
-              </select>
+                <label for="scopeFilter">Showing issues:</label>
+                <select id="scopeFilter" onchange="renderIssues()">
+                    <option value="All">All – national & local</option>
+                    <option value="National">National</option>
+                    <option value="State">State</option>
+                    <option value="Local">Local</option>
+                </select>
             </div>
-            <div id="issuesEmptyMsg" class="tiny" style="margin-top:0.3rem;">
-              No issues yet. Scroll down and create the first one.
-            </div>
-            <div id="issueList" class="issue-list"></div>
-          </div>
 
-          <!-- STATS + EXPLANATION -->
-          <div class="stats-box" id="statsBox">
-            <div><strong>Prototype only:</strong> issues and votes are stored only in this browser for now.
-              They are not yet tied to your real identity or sent anywhere.</div>
-            <div id="statsLines" style="margin-top:0.25rem;"></div>
-            <div style="margin-top:0.4rem;">
-              The long-term goal is to:
-              <ul style="margin-left:1rem;margin-top:0.25rem;">
-                <li>• Link support to verified U.S. voters.</li>
-                <li>• Turn majority-backed issues into one-page proposals.</li>
-                <li>• Deliver them to Congress and state leaders as a clear mandate from We The People.</li>
-              </ul>
+            <div id="issuesEmptyMsg" class="muted">
+                No issues yet. Scroll down and create the first one.
             </div>
-          </div>
+
+            <!-- ISSUES LIST -->
+            <div id="issuesList" class="stack"></div>
         </div>
-      </section>
 
-      <!-- CREATE ISSUE FORM -->
+        <!-- STATS -->
+        <div id="statsBox">
+            <h3>Support Stats</h3>
+            <p class="muted small">
+                Track upvotes, downvotes, and when items cross support thresholds.
+            </p>
+
+            <div class="stat-block">
+                <strong>Total Issues:</strong>
+                <span id="statTotalIssues">0</span>
+            </div>
+
+            <div class="stat-block">
+                <strong>Highest Support:</strong>
+                <span id="statTopSupport">0%</span>
+            </div>
+
+            <div class="stat-block">
+                <strong>Most Supported Issue:</strong>
+                <span id="statTopIssue">None yet</span>
+            </div>
+        </div>
+
+    </div>
+</section>
       <section class="card">
         <div class="card-header-row">
           <div>
